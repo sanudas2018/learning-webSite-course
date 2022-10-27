@@ -1,3 +1,9 @@
 .login {
   /* padding-left: 0px !important; */
 }
+a.btn.btn-ghost.normal-case.text-xl {
+  padding: 0px;
+}
+label.btn.btn-ghost.lg\:hidden {
+  padding: 0px 8px 0px 0px;
+}
