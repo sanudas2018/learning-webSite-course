@@ -6,7 +6,8 @@ import Faq from "../Pages/Faq/Faq";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import NotFound from "../Pages/NotFound/NotFound";
-import Profile from "../Pages/Profile/Profile";
+import Profile from "../Pages/Others/Profile/Profile";
+import TremsAndConditon from "../Pages/Others/TremsAndConditon/TremsAndConditon";
 import Registration from "../Pages/Registration/Registration";
 
 export const router = createBrowserRouter([
@@ -20,9 +21,13 @@ export const router = createBrowserRouter([
       { path: "/faq", element: <Faq></Faq> },
       { path: "/blog", element: <Blog></Blog> },
       { path: "/profile", element: <Profile></Profile> },
-      { path: "/registration", element: <Registration></Registration> },
-      { path: "/login", element: <Login></Login> },
     ],
+  },
+  { path: "/registration", element: <Registration></Registration> },
+  { path: "/login", element: <Login></Login> },
+  {
+    path: "/termsAndCondition",
+    element: <TremsAndConditon></TremsAndConditon>,
   },
   { path: "*", element: <NotFound></NotFound> },
 ]);

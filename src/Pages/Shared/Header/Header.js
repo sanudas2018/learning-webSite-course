@@ -6,7 +6,7 @@ import "./Header.css";
 const Header = () => {
   const user = {};
   return (
-    <div className="bg-cyan-600">
+    <div className="bg-cyan-600 sticky top-0 ">
       <div className="navbar bg-cyan-600 w-[95%] mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -106,7 +106,7 @@ const Header = () => {
             ) : (
               <>
                 <li>
-                  <Link to="/registration">Registration</Link>
+                  <Link to="/registration">SignUp</Link>
                 </li>
 
                 <li>
@@ -118,8 +118,12 @@ const Header = () => {
             )}
           </ul>
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom"
+              data-tip="hello"
+            >
+              <div className="w-10 rounded-full ">
                 {/* {user?.photoURL ? (
                   <img src={user.photoURL} />
                 ) : (
