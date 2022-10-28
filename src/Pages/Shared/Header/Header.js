@@ -6,7 +6,7 @@ import "./Header.css";
 const Header = () => {
   const user = {};
   return (
-    <div className="bg-cyan-600 sticky top-0 ">
+    <div className="bg-cyan-600 sticky top-0 z-10">
       <div className="navbar bg-cyan-600 w-[95%] mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
