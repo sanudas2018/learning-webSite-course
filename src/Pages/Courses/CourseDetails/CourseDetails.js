@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
 import { useLoaderData } from "react-router-dom";
 import "./CourseDetails.css";
 
 const CourseDetails = () => {
   const singleCourseDetails = useLoaderData();
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
   const {
     _id,
     amount,
@@ -17,38 +22,12 @@ const CourseDetails = () => {
     time,
   } = singleCourseDetails;
   return (
-    <div>
-      {/* <div className="card card-compact w-[95%] bg-base-100 shadow-xl">
-        <figure>
-          <img className="" src={image} alt="Shoes" />
-        </figure>
-        <div className="card-body">
-          <h1 className="card-title "> {name}</h1>
-          <p className="font-bold">{amount} Tk</p>
-          <p className="">
-            <span className="font-bold">Registration Deadline: </span>
-            {time}
-          </p>
-          <p className="">
-            <span className="font-bold">Live Class:</span> {liveClass}
-          </p>
-          <p className="">
-            <span className="font-bold pr-3">Course Duration:</span>
-            {description}
-          </p>
-          <p className="">
-            <span className="font-bold">Certificate:</span> {certificate}
-          </p>
-          <p className="">
-            <span className="font-bold">Phone Number:</span> {phone}
-          </p>
-          <div className="card-actions justify-center mt-4">
-            <button className="btn btn-primary w-[70%]">Course Details</button>
-          </div>
-        </div>
-      </div> */}
-      <div className="hero min-h-screen bg-base-200 mb-8 rounded-3xl">
-        <div className="hero-content flex-col lg:flex-row h-[600px] bg-slate-200">
+    <div className="mb-44">
+      <div
+        className="hero min-h-screen bg-base-200 mb- rounded-3xl"
+        ref={componentRef}
+      >
+        <div className="hero-content flex-col lg:flex-row h-[600px] bg-slate-200 ">
           <img
             src={image}
             className="max-w-sm shadow-2xl h-[100%] rounded-3xl"
@@ -74,11 +53,20 @@ const CourseDetails = () => {
             <p className="">
               <span className="font-bold">Phone Number:</span> {phone}
             </p>
-            <div className="card-actions justify-center mt-4">
-              <button className="btn btn-primary w-[70%]">
-                Join To The Course
-              </button>
-            </div>
+          </div>
+        </div>
+      </div>
+      <div className="buttonContainer w-[100%] lg:w-[100%] md:w-[100%] mx-auto flex flex-row lg:justify-end justify-around md:justify-end align-middle border ">
+        <div className="inner border  w-[100%] md:w-[40%]">
+          <div className="card-actions justify-end mt-4">
+            <button className="btn btn-primary w-[100%]">
+              Join To The Course
+            </button>
+          </div>
+          <div className="card-actions justify-end mt-4">
+            <button className="btn btn-info w-[100%]" onClick={handlePrint}>
+              Download Course Details
+            </button>
           </div>
         </div>
       </div>
