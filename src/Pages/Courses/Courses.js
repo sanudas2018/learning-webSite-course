@@ -6,7 +6,7 @@ import SingleCourseCart from "./SingleCourseCart/SingleCourseCart";
 const Courses = () => {
   const Courses = useLoaderData();
   const allCourses = Courses.data;
-  console.log(allCourses);
+
   return (
     <div className="z-0 mb-48">
       <p>courses</p>
