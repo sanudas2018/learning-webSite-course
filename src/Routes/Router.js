@@ -7,6 +7,7 @@ import Faq from "../Pages/Faq/Faq";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import NotFound from "../Pages/NotFound/NotFound";
+import CheckOut from "../Pages/Others/CheckOut/CheckOut";
 import Profile from "../Pages/Others/Profile/Profile";
 import TremsAndConditon from "../Pages/Others/TremsAndConditon/TremsAndConditon";
 import Registration from "../Pages/Registration/Registration";
@@ -28,6 +29,13 @@ export const router = createBrowserRouter([
       {
         path: "/courses/details/:id",
         element: <CourseDetails></CourseDetails>,
+        loader: async ({ params }) => {
+          return fetch(`http://localhost:5000/courses/${params.id}`);
+        },
+      },
+      {
+        path: "/checkOut/:id",
+        element: <CheckOut></CheckOut>,
         loader: async ({ params }) => {
           return fetch(`http://localhost:5000/courses/${params.id}`);
         },

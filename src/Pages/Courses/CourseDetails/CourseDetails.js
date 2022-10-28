@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import "./CourseDetails.css";
 
 const CourseDetails = () => {
@@ -10,7 +10,7 @@ const CourseDetails = () => {
     content: () => componentRef.current,
   });
   const {
-    _id,
+    id,
     amount,
     certificate,
     liveClass,
@@ -59,14 +59,18 @@ const CourseDetails = () => {
       <div className="buttonContainer w-[100%] lg:w-[100%] md:w-[100%] mx-auto flex flex-row lg:justify-end justify-around md:justify-end align-middle border ">
         <div className="inner border  w-[100%] md:w-[40%]">
           <div className="card-actions justify-end mt-4">
-            <button className="btn btn-primary w-[100%]">
-              Join To The Course
-            </button>
+            <Link to={`/checkOut/${id}`}>
+              <button className="btn btn-primary w-[100%]">
+                Join To The Course
+              </button>
+            </Link>
           </div>
           <div className="card-actions justify-end mt-4">
-            <button className="btn btn-info w-[100%]" onClick={handlePrint}>
-              Download Course Details
-            </button>
+            <Link>
+              <button className="btn btn-info w-[100%]" onClick={handlePrint}>
+                Download Course Details
+              </button>
+            </Link>
           </div>
         </div>
       </div>
