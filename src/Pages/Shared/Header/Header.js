@@ -43,9 +43,9 @@ const Header = () => {
               <li>
                 <Link to="/blog">Blog</Link>
               </li>
-              <div className="ml-4">
+              {/* <div className="w-[200px]">
                 <RightSideNav></RightSideNav>
-              </div>
+              </div> */}
               <label className="swap swap-rotate flex justify-end align-middle mt-3 ">
                 {/* <!-- this hidden checkbox controls the state --> */}
                 <input type="checkbox" />

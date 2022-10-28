@@ -9,12 +9,13 @@ const Main = () => {
   return (
     <div>
       <Header></Header>
-      <div className="mx-auto w-[94%] border border-red-800 mt-4">
+      <div className="mx-auto w-[94%]  mt-4">
         <div className="content-body row grid md:grid-cols-4  gap-3">
-          <div className="newsBody border col-span-4 md:col-span-3">
+          <div className="newsBody  col-span-4 md:col-span-3">
             <Outlet></Outlet>
           </div>
-          <div className="rightSide border border-green-900 sm:hidden lg:block">
+
+          <div className="rightSide  sm:hidden md:block mt-14 z-0 relative">
             <RightSideNav></RightSideNav>
           </div>
         </div>

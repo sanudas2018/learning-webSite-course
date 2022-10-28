@@ -13,7 +13,7 @@ const RightSideNav = () => {
   // console.log(categories);
   return (
     <div>
-      <div className="categories-container">
+      <div className="categories-container md:absolute md:top-20 md:right-[-35px] lg:right-[0px] shadow-2xl">
         <div className="overflow-x-auto">
           <table className="table w-full">
             {/* <!-- head --> */}
@@ -28,7 +28,14 @@ const RightSideNav = () => {
               {categories.map((category, index) => (
                 <tr key={category.id} className="hover text-center">
                   <th>{index + 1}</th>
-                  <td className="text-left">{category.name}</td>
+                  <td className="text-left">
+                    <Link
+                      key={category.id}
+                      to={`/courses/details/${category.id}`}
+                    >
+                      {category.name}
+                    </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
