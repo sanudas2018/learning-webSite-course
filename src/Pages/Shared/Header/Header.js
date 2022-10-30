@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/UserContext";
 import RightSideNav from "../RightSideNav/RightSideNav";
 import "./Header.css";
 
 const Header = () => {
-  const user = {};
+  const { user } = useContext(AuthContext);
   return (
     <div className="bg-cyan-600 sticky top-0 z-10">
       <div className="navbar bg-cyan-600 w-[95%] mx-auto">
@@ -87,7 +88,7 @@ const Header = () => {
               <Link to="/faq">FAQ</Link>
             </li>
             <li>
-              <Link to="/blog">Blog</Link>
+              <Link to="/blog">Blog </Link>
             </li>
 
             {user?.uid && (
@@ -105,15 +106,23 @@ const Header = () => {
               </li>
             ) : (
               <>
-                <li>
-                  <Link to="/registration">SignUp</Link>
-                </li>
+                {user?.displayName ? (
+                  <li>
+                    <Link to="#">SignOut</Link>
+                  </li>
+                ) : (
+                  <>
+                    <li>
+                      <Link to="/registration">SignUp</Link>
+                    </li>
 
-                <li>
-                  <Link className="login" to="/login">
-                    Login
-                  </Link>
-                </li>
+                    <li>
+                      <Link className="login" to="/login">
+                        Login
+                      </Link>
+                    </li>
+                  </>
+                )}
               </>
             )}
           </ul>
@@ -121,7 +130,7 @@ const Header = () => {
             <label
               tabIndex={0}
               className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom"
-              data-tip="hello"
+              data-tip={user?.displayName}
             >
               <div className="w-10 rounded-full ">
                 {/* {user?.photoURL ? (
@@ -143,18 +152,25 @@ const Header = () => {
               <li>
                 <Link to="/profile" className="justify-between">
                   Profile
-                  <span className="badge">New</span>
                 </Link>
               </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link>Logout</Link>
-                {/* <Link onClick={() => logOut()} to="/login">
+              {user?.displayName ? (
+                <li>
+                  <Link>Logout</Link>
+                  {/* <Link onClick={() => logOut()} to="/login">
                   Logout
                 </Link> */}
-              </li>
+                </li>
+              ) : (
+                <>
+                  <li>
+                    <Link to="/registration">SignUp</Link>
+                  </li>
+                  <li>
+                    <Link to="/login">Login</Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
