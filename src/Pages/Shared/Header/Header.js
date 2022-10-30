@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/UserContext";
 import RightSideNav from "../RightSideNav/RightSideNav";
 import "./Header.css";
 
 const Header = () => {
   const { user, signOutAuth } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    signOutAuth();
+  };
   return (
     <div className="bg-cyan-600 sticky top-0 z-10">
       <div className="navbar bg-cyan-600 w-[95%] mx-auto">
@@ -108,7 +112,7 @@ const Header = () => {
           <ul className="menu menu-horizontal p-0">
             {user?.uid ? (
               <li>
-                <Link to="#" onClick={() => signOutAuth()}>
+                <Link to="#" onClick={handleSignOut}>
                   SignOut
                 </Link>
               </li>

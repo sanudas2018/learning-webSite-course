@@ -50,8 +50,15 @@ export const router = createBrowserRouter([
       },
       { path: "/faq", element: <Faq></Faq> },
       { path: "/blog", element: <Blog></Blog> },
-      { path: "/profile", element: <Profile></Profile> },
     ],
+  },
+  {
+    path: "/profile",
+    element: (
+      <PrivateRoutes>
+        <Profile></Profile>
+      </PrivateRoutes>
+    ),
   },
   { path: "/registration", element: <Registration></Registration> },
 
