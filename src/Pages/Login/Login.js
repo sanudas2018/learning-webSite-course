@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../Shared/Header/Header";
 import { AiFillGoogleCircle } from "react-icons/ai";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
 import { AuthContext } from "../../contexts/UserContext";
 
 const Login = () => {
+  const [error, setError] = useState("");
+  const [succTost, setsuccTost] = useState("");
   const { singIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleSingIn = (e) => {
@@ -18,12 +22,22 @@ const Login = () => {
         // Signed in
         const user = result.user;
         console.log(user);
+        setsuccTost("Login Success Fully", {
+          position: "top-center",
+          autoClose: 3000,
+        });
+        setError("");
         form.reset();
         navigate("/home");
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage);
+        setError(
+          toast.error(errorMessage, {
+            position: "top-center",
+            autoClose: 3000,
+          })
+        );
       });
   };
   return (
@@ -32,6 +46,8 @@ const Login = () => {
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse mt-[-60px] bg-slate-400 rounded-2xl shadow-2xl">
           <div className="text-center lg:text-left">
+            {error}
+            {succTost}
             <h1 className="text-5xl font-bold text-slate-200">Login now!</h1>
             <p className="py-6 text-white ">
               If you are already a member of our website then login from here.
@@ -112,6 +128,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
