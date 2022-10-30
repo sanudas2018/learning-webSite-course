@@ -42,10 +42,13 @@ const SingleCourseCart = ({ course }) => {
           {/* <p className="">
             <span className="font-bold">Phone Number:</span> {phone}
           </p> */}
-          <div className="card-actions justify-center mt-4">
-            <button className="btn btn-primary w-[70%]">
-              <Link to={`/courses/details/${id}`}>Course Details</Link>
-            </button>
+          <div className="card-actions mt-4 border border-cyan-100">
+            <Link
+              className="w-[100%] text-center"
+              to={`/courses/details/${id}`}
+            >
+              <button className="btn btn-primary ">Course details</button>
+            </Link>
           </div>
         </div>
       </div>
