@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../Shared/Header/Header";
+import { AiFillGoogleCircle } from "react-icons/ai";
 import "./Registration.css";
 
 const Registration = () => {
@@ -25,7 +26,7 @@ const Registration = () => {
               Please Create your account Fast
             </p>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card flex-shrink-0   shadow-2xl bg-base-100">
             <div className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -92,6 +93,36 @@ const Registration = () => {
                   <code className="text-pink-500"> Log in</code>
                 </Link>
               </p>
+              <div className="divider">OR</div>
+
+              <div className="socialAccount grid grid-cols-3 gap-2">
+                <div className="google ">
+                  <Link>
+                    <button className="btn gap-2 cursor-pointer btnGoogle">
+                      <label>
+                        <AiFillGoogleCircle className="" />
+                      </label>
+                      <p>Google</p>
+                    </button>
+                  </Link>
+                </div>
+                <div className="github">
+                  <Link>
+                    <button className="btn gap-2 cursor-pointer btnGithub">
+                      <AiFillGoogleCircle className="" />
+                      GitHub
+                    </button>
+                  </Link>
+                </div>
+                <div className="facebook">
+                  <Link>
+                    <button className="btn gap-2 cursor-pointer btnFacebook">
+                      <AiFillGoogleCircle className="" />
+                      Facebook
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>

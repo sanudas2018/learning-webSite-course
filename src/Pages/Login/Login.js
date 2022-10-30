@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../Shared/Header/Header";
+import { AiFillGoogleCircle } from "react-icons/ai";
 import "./Login.css";
 
 const Login = () => {
@@ -16,7 +17,7 @@ const Login = () => {
               If not, please register.
             </p>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card flex-shrink-0 w-fullshadow-2xl bg-base-100">
             <div className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -52,6 +53,36 @@ const Login = () => {
                   <code className="text-pink-500"> SignUp Now</code>
                 </Link>
               </p>
+              <div className="divider">OR</div>
+
+              <div className="socialAccount grid grid-cols-3 gap-2">
+                <div className="google ">
+                  <Link>
+                    <button className="btn gap-2 cursor-pointer btnGoogle">
+                      <label>
+                        <AiFillGoogleCircle className="" />
+                      </label>
+                      <p>Google</p>
+                    </button>
+                  </Link>
+                </div>
+                <div className="github">
+                  <Link>
+                    <button className="btn gap-2 cursor-pointer btnGithub">
+                      <AiFillGoogleCircle className="" />
+                      GitHub
+                    </button>
+                  </Link>
+                </div>
+                <div className="facebook">
+                  <Link>
+                    <button className="btn gap-2 cursor-pointer btnFacebook">
+                      <AiFillGoogleCircle className="" />
+                      Facebook
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>

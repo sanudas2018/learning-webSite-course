@@ -70,7 +70,7 @@ const Header = () => {
               </label>
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost normal-case text-xl">
+          <Link to="/home" className="btn btn-ghost normal-case text-xl">
             EduKul
           </Link>
         </div>
