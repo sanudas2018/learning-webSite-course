@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../Shared/Header/Header";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
@@ -12,6 +12,8 @@ const Login = () => {
   const [succTost, setsuccTost] = useState("");
   const { singIn } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handleSingIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -26,9 +28,10 @@ const Login = () => {
           position: "top-center",
           autoClose: 3000,
         });
+        navigate(from, { replace: true });
         setError("");
         form.reset();
-        navigate("/home");
+        // navigate("/home");
       })
       .catch((error) => {
         const errorMessage = error.message;

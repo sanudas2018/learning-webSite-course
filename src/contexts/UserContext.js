@@ -46,7 +46,14 @@ const UserContext = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const authInfo = { user, googleLogin, signOutAuth, createUser, singIn };
+  const authInfo = {
+    user,
+    loading,
+    googleLogin,
+    signOutAuth,
+    createUser,
+    singIn,
+  };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

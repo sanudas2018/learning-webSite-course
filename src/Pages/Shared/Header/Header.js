@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../contexts/UserContext";
 import RightSideNav from "../RightSideNav/RightSideNav";
 import "./Header.css";
@@ -149,9 +149,9 @@ const Header = () => {
               </li>
               {user?.uid ? (
                 <li>
-                  <Link to="/login" onClick={() => signOutAuth()}>
+                  <NavLink to="/login" onClick={() => signOutAuth()}>
                     LogOut
-                  </Link>
+                  </NavLink>
                   {/* <Link onClick={() => logOut()} to="/login">
                   Logout
                 </Link> */}

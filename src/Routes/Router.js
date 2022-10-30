@@ -11,6 +11,7 @@ import CheckOut from "../Pages/Others/CheckOut/CheckOut";
 import Profile from "../Pages/Others/Profile/Profile";
 import TremsAndConditon from "../Pages/Others/TremsAndConditon/TremsAndConditon";
 import Registration from "../Pages/Registration/Registration";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +35,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/checkOut/:id",
-        element: <CheckOut></CheckOut>,
+        element: (
+          <PrivateRoutes>
+            <CheckOut></CheckOut>
+          </PrivateRoutes>
+        ),
         loader: async ({ params }) => {
           return fetch(`http://localhost:5000/courses/${params.id}`);
         },
