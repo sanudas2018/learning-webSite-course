@@ -20,6 +20,7 @@ const UserContext = ({ children }) => {
 
   // google signIn
   const googleLogin = (provider) => {
+    setLoading(true);
     return signInWithPopup(auth, provider);
   };
   //   user manage
@@ -34,15 +35,18 @@ const UserContext = ({ children }) => {
   }, []);
   // sign out
   const signOutAuth = () => {
+    setLoading(true);
     signOut(auth);
   };
 
   // email and password
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   // sign in with email and pass
   const singIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
