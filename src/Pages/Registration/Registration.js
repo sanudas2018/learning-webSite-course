@@ -12,6 +12,7 @@ const Registration = () => {
   const { googleLogin, createUser, updateUserProfile, verifyEmail } =
     useContext(AuthContext);
   const [terms, setTerms] = useState(false);
+  const [errorCheck, setErrorCheck] = useState("");
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
   // google signin
@@ -34,6 +35,15 @@ const Registration = () => {
     const photoURL = form.img.value;
     const email = form.email.value;
     const password = form.password.value;
+    if (!/(?=.*[A-Z])/.test(password)) {
+      setErrorCheck("Please add at last one UpperCase");
+      return;
+    }
+    if (/(?=.*[!@#$%^&*])/.test(password)) {
+      setErrorCheck("Please add at last one Special Character");
+      return;
+    }
+    setErrorCheck("");
     createUser(email, password)
       .then((result) => {
         // Signed in
@@ -93,7 +103,10 @@ const Registration = () => {
               Please Create your account Fast
             </p>
           </div>
-          <div className="card flex-shrink-0   shadow-2xl bg-base-100">
+          <div className="card flex-shrink-0   shadow-2xl bg-base-100 overflow-hidden">
+            <p className="text-red-500 font-bold text-center mt-4 overflow-hidden">
+              {errorCheck}
+            </p>
             <form onSubmit={handleEmailAndPassword}>
               <div className="card-body">
                 <div className="form-control">
@@ -105,6 +118,7 @@ const Registration = () => {
                     name="name"
                     placeholder="Full Name"
                     className="input input-bordered"
+                    required
                   />
                 </div>
                 <div className="form-control">
@@ -127,6 +141,7 @@ const Registration = () => {
                     name="email"
                     placeholder="Email"
                     className="input input-bordered"
+                    required
                   />
                 </div>
                 <div className="form-control">
@@ -138,6 +153,7 @@ const Registration = () => {
                     name="password"
                     placeholder="Password"
                     className="input input-bordered"
+                    required
                   />
                 </div>
                 <div className="form-control">
