@@ -4,6 +4,7 @@ import {
   getAuth,
   onAuthStateChanged,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -62,6 +63,11 @@ const UserContext = ({ children }) => {
   const verifyEmail = () => {
     return sendEmailVerification(auth.currentUser);
   };
+  // reset password
+  const passwordReset = (email) => {
+    setLoading(true);
+    sendPasswordResetEmail(auth, email);
+  };
 
   const authInfo = {
     user,
@@ -73,6 +79,7 @@ const UserContext = ({ children }) => {
     updateUserProfile,
     verifyEmail,
     setLoading,
+    passwordReset,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

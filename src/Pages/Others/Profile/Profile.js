@@ -17,7 +17,7 @@ const Profile = () => {
           <div className="profileImg">
             <img
               className="w-[300px] h-[300px] rounded-full mx-auto mb-3"
-              src="https://res.cloudinary.com/dwac7hlfp/image/upload/v1651089064/cld-sample.jpg"
+              src={user?.photoURL}
               alt=""
             />
           </div>

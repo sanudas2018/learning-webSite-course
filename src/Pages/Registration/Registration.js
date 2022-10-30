@@ -35,11 +35,16 @@ const Registration = () => {
     const photoURL = form.img.value;
     const email = form.email.value;
     const password = form.password.value;
+    if (password.length < 6) {
+      setErrorCheck("Please add at last 6 Character");
+      return;
+    }
     if (!/(?=.*[A-Z])/.test(password)) {
       setErrorCheck("Please add at last one UpperCase");
       return;
     }
-    if (/(?=.*[!@#$%^&*])/.test(password)) {
+
+    if (!/(?=.*[!@#$%^&*])/.test(password)) {
       setErrorCheck("Please add at last one Special Character");
       return;
     }

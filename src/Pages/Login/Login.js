@@ -9,10 +9,12 @@ import { AuthContext } from "../../contexts/UserContext";
 import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
-  const [error, setError] = useState("");
+  const [errorSet, setErrorSet] = useState("");
   const [succTost, setsuccTost] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
-  const { singIn, setLoading, googleLogin } = useContext(AuthContext);
+  const { singIn, setLoading, googleLogin, passwordReset } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -46,7 +48,7 @@ const Login = () => {
           autoClose: 3000,
         });
         //  navigate(from, { replace: true });
-        setError("");
+        setErrorSet("");
         if (user.emailVerified) {
           navigate(from, { replace: true });
         } else {
@@ -60,7 +62,7 @@ const Login = () => {
       })
       .catch((error) => {
         const errorMessage = error.message;
-        setError(
+        setErrorSet(
           toast.error(errorMessage, {
             position: "top-center",
             autoClose: 3000,
@@ -71,13 +73,35 @@ const Login = () => {
         setLoading(false);
       });
   };
+
+  // handle password
+  const handleEmailBlur = (e) => {
+    const email = e.target.value;
+    setUserEmail(email);
+  };
+  const handlePasswordReset = () => {
+    if (!userEmail) {
+      alert("Please enter your email address.");
+      return;
+    }
+    passwordReset(userEmail)
+      .then(() => {
+        // Password reset email sent!
+        alert("Password reset email sent");
+        // ..
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.error(errorMessage);
+      });
+  };
   return (
     <div>
       <Header></Header>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse mt-[-60px] bg-slate-400 rounded-2xl shadow-2xl">
           <div className="text-center lg:text-left">
-            {error}
+            {errorSet}
             {succTost}
             <h1 className="text-5xl font-bold text-slate-200">Login now!</h1>
             <p className="py-6 text-white ">
@@ -96,6 +120,7 @@ const Login = () => {
                     type="email"
                     name="email"
                     placeholder="Email"
+                    onBlur={handleEmailBlur}
                     className="input input-bordered"
                     required
                   />
@@ -112,9 +137,12 @@ const Login = () => {
                     required
                   />
                   <label className="label">
-                    <Link href="#" className="label-text-alt link link-hover">
+                    <button
+                      onClick={handlePasswordReset}
+                      className="label-text-alt link link-hover"
+                    >
                       Forgot password?
-                    </Link>
+                    </button>
                   </label>
                 </div>
                 <div className="form-control mt-6">
