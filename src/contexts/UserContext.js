@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.init";
 import { router } from "../Routes/Router";
@@ -49,6 +50,10 @@ const UserContext = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+  // updateUserProfile
+  const updateUserProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile);
+  };
 
   const authInfo = {
     user,
@@ -57,6 +62,7 @@ const UserContext = ({ children }) => {
     signOutAuth,
     createUser,
     singIn,
+    updateUserProfile,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

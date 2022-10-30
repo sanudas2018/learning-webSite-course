@@ -7,7 +7,8 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from "../../contexts/UserContext";
 
 const Registration = () => {
-  const { googleLogin, createUser } = useContext(AuthContext);
+  const { googleLogin, createUser, updateUserProfile } =
+    useContext(AuthContext);
   const [terms, setTerms] = useState(false);
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
@@ -37,12 +38,24 @@ const Registration = () => {
         const user = result.user;
         console.log(user);
         form.reset();
+        handleUpdateUserProfile(name, photoURL);
         navigate("/login");
       })
       .catch((error) => {
         const errorMessage = error.message;
         console.log(errorMessage);
       });
+  };
+
+  // update user profile
+  const handleUpdateUserProfile = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+    updateUserProfile(profile)
+      .then(() => {})
+      .catch((error) => console.log(error));
   };
   // terms and condition
   const handleTerms = (e) => {
