@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../../contexts/UserContext";
 
 const CheckOut = () => {
+  const { user } = useContext(AuthContext);
   const singleCourseDetails = useLoaderData();
   const {
     id,
@@ -26,7 +28,7 @@ const CheckOut = () => {
                 <img src={image} alt="Shoes" />
               </figure>
               <div className="card-body">
-                <h1 className="card-title "> {name}</h1>
+                <h1 className="card-title ">{name}</h1>
                 <p className="font-bold">{amount} Tk</p>
                 <p className="">
                   <span className="font-bold">Registration Deadline: </span>
@@ -35,8 +37,7 @@ const CheckOut = () => {
                 <p className="">
                   <span className="font-bold">Live Class:</span> {liveClass}
                 </p>
-               
-               
+
                 <p className="">
                   <span className="font-bold">Phone Number:</span> {phone}
                 </p>
@@ -52,6 +53,8 @@ const CheckOut = () => {
                   </label>
                   <input
                     type="text"
+                    readOnly
+                    defaultValue={user?.displayName}
                     placeholder="Fast Name"
                     className="input input-bordered"
                   />
@@ -133,6 +136,8 @@ const CheckOut = () => {
                 </label>
                 <input
                   type="text"
+                  readOnly
+                  defaultValue={user?.email}
                   placeholder="EMAIL ADDRESS"
                   className="input input-bordered"
                 />
