@@ -23,14 +23,16 @@ export const router = createBrowserRouter([
         path: "/courses",
         element: <Courses></Courses>,
         loader: async () => {
-          return fetch("http://localhost:5000/courses");
+          return fetch("https://open-door-learner-server.vercel.app/courses");
         },
       },
       {
         path: "/courses/details/:id",
         element: <CourseDetails></CourseDetails>,
         loader: async ({ params }) => {
-          return fetch(`http://localhost:5000/courses/${params.id}`);
+          return fetch(
+            `https://open-door-learner-server.vercel.app/courses/${params.id}`
+          );
         },
       },
       {
@@ -41,7 +43,9 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: async ({ params }) => {
-          return fetch(`http://localhost:5000/courses/${params.id}`);
+          return fetch(
+            `https://open-door-learner-server.vercel.app/courses/${params.id}`
+          );
         },
       },
       { path: "/faq", element: <Faq></Faq> },

@@ -71,7 +71,13 @@ const Header = () => {
               </label>
             </ul>
           </div>
+
           <Link to="/home" className="btn btn-ghost normal-case text-xl">
+            <img
+              className="w-[30px] h-[30px] mr-2"
+              src="https://res.cloudinary.com/dwac7hlfp/image/upload/v1666810625/Online-Learning-website/favicon_rwizsc.png"
+              alt=""
+            />
             EduKul
           </Link>
         </div>
