@@ -5,7 +5,7 @@ import RightSideNav from "../RightSideNav/RightSideNav";
 import "./Header.css";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, signOutAuth } = useContext(AuthContext);
   return (
     <div className="bg-cyan-600 sticky top-0 z-10">
       <div className="navbar bg-cyan-600 w-[95%] mx-auto">
@@ -102,27 +102,21 @@ const Header = () => {
           <ul className="menu menu-horizontal p-0">
             {user?.uid ? (
               <li>
-                <Link to="/registration">{user?.displayName}</Link>
+                <Link to="#" onClick={() => signOutAuth()}>
+                  SignOut
+                </Link>
               </li>
             ) : (
               <>
-                {user?.displayName ? (
-                  <li>
-                    <Link to="#">SignOut</Link>
-                  </li>
-                ) : (
-                  <>
-                    <li>
-                      <Link to="/registration">SignUp</Link>
-                    </li>
+                <li>
+                  <Link to="/registration">SignUp</Link>
+                </li>
 
-                    <li>
-                      <Link className="login" to="/login">
-                        Login
-                      </Link>
-                    </li>
-                  </>
-                )}
+                <li>
+                  <Link className="login" to="/login">
+                    Login
+                  </Link>
+                </li>
               </>
             )}
           </ul>
@@ -133,15 +127,14 @@ const Header = () => {
               data-tip={user?.displayName}
             >
               <div className="w-10 rounded-full ">
-                {/* {user?.photoURL ? (
-                  <img src={user.photoURL} />
+                {user?.photoURL ? (
+                  <img src={user.photoURL} alt="" />
                 ) : (
-                  <img src="https://placeimg.com/80/80/people" />
-                )} */}
-                <img
-                  src="https://placeimg.com/80/80/people"
-                  alt="profile img"
-                />
+                  <img
+                    src="https://placeimg.com/80/80/people"
+                    alt="profile img"
+                  />
+                )}
               </div>
             </label>
 
@@ -154,9 +147,11 @@ const Header = () => {
                   Profile
                 </Link>
               </li>
-              {user?.displayName ? (
+              {user?.uid ? (
                 <li>
-                  <Link>Logout</Link>
+                  <Link to="/login" onClick={() => signOutAuth()}>
+                    LogOut
+                  </Link>
                   {/* <Link onClick={() => logOut()} to="/login">
                   Logout
                 </Link> */}
