@@ -6,14 +6,31 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
 import { AuthContext } from "../../contexts/UserContext";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
   const [error, setError] = useState("");
   const [succTost, setsuccTost] = useState("");
-  const { singIn, setLoading } = useContext(AuthContext);
+
+  const { singIn, setLoading, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const googleProvider = new GoogleAuthProvider();
+  // google signin
+  const handleGoogleLogin = () => {
+    googleLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.error(errorMessage);
+      });
+  };
+
   const handleSingIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -112,7 +129,10 @@ const Login = () => {
                 <div className="socialAccount grid grid-cols-3 gap-2">
                   <div className="google ">
                     <Link>
-                      <button className="btn gap-2 cursor-pointer btnGoogle">
+                      <button
+                        onClick={handleGoogleLogin}
+                        className="btn gap-2 cursor-pointer btnGoogle"
+                      >
                         <label>
                           <AiFillGoogleCircle className="" />
                         </label>
