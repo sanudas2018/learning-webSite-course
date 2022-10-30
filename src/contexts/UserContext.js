@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -16,7 +17,7 @@ const auth = getAuth(app);
 
 const UserContext = ({ children }) => {
   //   const user = { displayName: "Piya" };
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // google signIn
@@ -27,7 +28,10 @@ const UserContext = ({ children }) => {
   //   user manage
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      //   setUser(currentUser);
+      if (currentUser === null || currentUser.emailVerified) {
+        setUser(currentUser);
+      }
       setLoading(false);
     });
     return () => {
@@ -54,6 +58,10 @@ const UserContext = ({ children }) => {
   const updateUserProfile = (profile) => {
     return updateProfile(auth.currentUser, profile);
   };
+  // verify Email
+  const verifyEmail = () => {
+    return sendEmailVerification(auth.currentUser);
+  };
 
   const authInfo = {
     user,
@@ -63,6 +71,8 @@ const UserContext = ({ children }) => {
     createUser,
     singIn,
     updateUserProfile,
+    verifyEmail,
+    setLoading,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

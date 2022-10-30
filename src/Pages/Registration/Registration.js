@@ -5,9 +5,11 @@ import { AiFillGoogleCircle } from "react-icons/ai";
 import "./Registration.css";
 import { GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from "../../contexts/UserContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Registration = () => {
-  const { googleLogin, createUser, updateUserProfile } =
+  const { googleLogin, createUser, updateUserProfile, verifyEmail } =
     useContext(AuthContext);
   const [terms, setTerms] = useState(false);
   const navigate = useNavigate();
@@ -39,11 +41,20 @@ const Registration = () => {
         console.log(user);
         form.reset();
         handleUpdateUserProfile(name, photoURL);
-        navigate("/login");
+        handleVerifyEmail();
+        // navigate("/login");
+        toast.success("Please check you Email and Verify your mail", {
+          position: "top-center",
+          autoClose: 3000,
+        });
       })
       .catch((error) => {
         const errorMessage = error.message;
         console.log(errorMessage);
+        toast.error(errorMessage, {
+          position: "top-center",
+          autoClose: 3000,
+        });
       });
   };
 
@@ -56,6 +67,12 @@ const Registration = () => {
     updateUserProfile(profile)
       .then(() => {})
       .catch((error) => console.log(error));
+  };
+  // email verifyEmail
+  const handleVerifyEmail = () => {
+    verifyEmail()
+      .then(() => {})
+      .then((error) => console.log(error));
   };
   // terms and condition
   const handleTerms = (e) => {
@@ -186,6 +203,7 @@ const Registration = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -10,7 +10,7 @@ import { AuthContext } from "../../contexts/UserContext";
 const Login = () => {
   const [error, setError] = useState("");
   const [succTost, setsuccTost] = useState("");
-  const { singIn } = useContext(AuthContext);
+  const { singIn, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -28,8 +28,16 @@ const Login = () => {
           position: "top-center",
           autoClose: 3000,
         });
-        navigate(from, { replace: true });
+        //  navigate(from, { replace: true });
         setError("");
+        if (user.emailVerified) {
+          navigate(from, { replace: true });
+        } else {
+          toast.error("Please Verified Your Email", {
+            position: "top-center",
+            autoClose: 3000,
+          });
+        }
         form.reset();
         // navigate("/home");
       })
@@ -41,6 +49,9 @@ const Login = () => {
             autoClose: 3000,
           })
         );
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
   return (
