@@ -1,11 +1,21 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../../contexts/UserContext";
 import Footer from "../../Shared/Footer/Footer";
 import Header from "../../Shared/Header/Header";
 import "./Profile.css";
 const Profile = () => {
   const { user } = useContext(AuthContext);
+
+  const handleProfileUpdate = (e) => {
+    e.preventDefault();
+    toast("Your profile update SuccessFully", {
+      position: "top-center",
+      autoClose: 3000,
+    });
+  };
   return (
     <div className="profileContainer">
       <Header></Header>
@@ -83,7 +93,12 @@ const Profile = () => {
                   </div>
 
                   <div className="form-control mt-6">
-                    <button className="btn btn-primary">Update Profile</button>
+                    <button
+                      onClick={handleProfileUpdate}
+                      className="btn btn-primary"
+                    >
+                      Update Profile
+                    </button>
                   </div>
                 </div>
               </form>
@@ -91,6 +106,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
       <Footer></Footer>
     </div>
   );

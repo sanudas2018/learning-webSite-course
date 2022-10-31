@@ -76,7 +76,7 @@ const Header = () => {
             </ul>
           </div>
 
-          <Link to="/home" className="btn btn-ghost normal-case text-xl">
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
             <img
               className="w-[30px] h-[30px] mr-2"
               src="https://res.cloudinary.com/dwac7hlfp/image/upload/v1666810625/Online-Learning-website/favicon_rwizsc.png"
@@ -159,7 +159,7 @@ const Header = () => {
               </li>
               {user?.uid ? (
                 <li>
-                  <NavLink to="/login" onClick={() => signOutAuth()}>
+                  <NavLink to="/login" onClick={handleSignOut}>
                     LogOut
                   </NavLink>
                   {/* <Link onClick={() => logOut()} to="/login">

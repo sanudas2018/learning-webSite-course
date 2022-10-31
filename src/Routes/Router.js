@@ -14,11 +14,13 @@ import Registration from "../Pages/Registration/Registration";
 import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
+  { path: "/", element: <Home></Home> },
+  { path: "/home", element: <Home></Home> },
   {
     path: "/",
+
     element: <Main></Main>,
     children: [
-      { path: "/", element: <Home></Home> },
       {
         path: "/courses",
         element: <Courses></Courses>,
@@ -62,7 +64,6 @@ export const router = createBrowserRouter([
   },
   { path: "/registration", element: <Registration></Registration> },
 
-  { path: "/home", element: <Home></Home> },
   { path: "/login", element: <Login></Login> },
   {
     path: "/termsAndCondition",

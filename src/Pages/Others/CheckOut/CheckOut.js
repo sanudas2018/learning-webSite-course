@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../../contexts/UserContext";
 
 const CheckOut = () => {
@@ -17,6 +19,14 @@ const CheckOut = () => {
     phone,
     time,
   } = singleCourseDetails;
+
+  const handleCheckout = (e) => {
+    e.preventDefault();
+    toast("Your Course Enrollment successfully ", {
+      position: "top-center",
+      autoClose: 3000,
+    });
+  };
   return (
     <div className="mb-20">
       <h1 className="text-4xl font-bold mb-3 text-center">Billing details</h1>
@@ -143,12 +153,15 @@ const CheckOut = () => {
                 />
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button onClick={handleCheckout} className="btn btn-primary">
+                  CheckOut Now
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

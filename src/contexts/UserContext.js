@@ -19,6 +19,7 @@ const auth = getAuth(app);
 const UserContext = ({ children }) => {
   //   const user = { displayName: "Piya" };
   const [user, setUser] = useState(null);
+  const [githubUser, setGithubUser] = useState(false);
   const [loading, setLoading] = useState(true);
 
   // google signIn
@@ -26,13 +27,20 @@ const UserContext = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, provider);
   };
+  // github signIn
+  const gitHubLogin = (provider) => {
+    setLoading(true);
+    return signInWithPopup(auth, provider);
+  };
   //   user manage
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       //   setUser(currentUser);
+      // .emailVerified
       if (currentUser === null || currentUser.emailVerified) {
         setUser(currentUser);
       }
+      
       setLoading(false);
     });
     return () => {
@@ -73,6 +81,7 @@ const UserContext = ({ children }) => {
     user,
     loading,
     googleLogin,
+    gitHubLogin,
     signOutAuth,
     createUser,
     singIn,
@@ -80,6 +89,7 @@ const UserContext = ({ children }) => {
     verifyEmail,
     setLoading,
     passwordReset,
+    setUser,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

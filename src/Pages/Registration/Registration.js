@@ -1,26 +1,49 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../Shared/Header/Header";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import "./Registration.css";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from "../../contexts/UserContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Registration = () => {
-  const { googleLogin, createUser, updateUserProfile, verifyEmail } =
-    useContext(AuthContext);
+  const {
+    googleLogin,
+    gitHubLogin,
+    createUser,
+    updateUserProfile,
+    verifyEmail,
+    setUser,
+  } = useContext(AuthContext);
   const [terms, setTerms] = useState(false);
   const [errorCheck, setErrorCheck] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const googleProvider = new GoogleAuthProvider();
   // google signin
   const handleGoogleLogin = () => {
     googleLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        setUser(user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.error(errorMessage);
+      });
+  };
+  // git hub signIn
+  const githubProvider = new GithubAuthProvider();
+  const handleGithubLogin = () => {
+    gitHubLogin(githubProvider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -175,7 +198,7 @@ const Registration = () => {
                     />
                   </label>
                 </div>
-                <div className="form-control mt-6">
+                <div className="form-control mt-3">
                   <button className="btn btn-primary" disabled={!terms}>
                     Registration
                   </button>
@@ -204,7 +227,10 @@ const Registration = () => {
                   </div>
                   <div className="github">
                     <Link>
-                      <button className="btn gap-2 cursor-pointer btnGithub">
+                      <button
+                        onClick={handleGithubLogin}
+                        className="btn gap-2 cursor-pointer btnGithub"
+                      >
                         <AiFillGoogleCircle className="" />
                         GitHub
                       </button>

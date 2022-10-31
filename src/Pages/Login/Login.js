@@ -6,15 +6,21 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
 import { AuthContext } from "../../contexts/UserContext";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
   const [errorSet, setErrorSet] = useState("");
   const [succTost, setsuccTost] = useState("");
   const [userEmail, setUserEmail] = useState("");
 
-  const { singIn, setLoading, googleLogin, passwordReset } =
-    useContext(AuthContext);
+  const {
+    singIn,
+    setLoading,
+    googleLogin,
+    gitHubLogin,
+    passwordReset,
+    setUser,
+  } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -24,6 +30,7 @@ const Login = () => {
     googleLogin(googleProvider)
       .then((result) => {
         const user = result.user;
+        setUser(user);
         console.log(user);
         navigate(from, { replace: true });
       })
@@ -32,7 +39,24 @@ const Login = () => {
         console.error(errorMessage);
       });
   };
-
+  // git hub signIn
+  const githubProvider = new GithubAuthProvider();
+  const handleGithubLogin = () => {
+    gitHubLogin(githubProvider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        console.log(user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.error(errorMessage);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
   const handleSingIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -172,7 +196,10 @@ const Login = () => {
                   </div>
                   <div className="github">
                     <Link>
-                      <button className="btn gap-2 cursor-pointer btnGithub">
+                      <button
+                        onClick={handleGithubLogin}
+                        className="btn gap-2 cursor-pointer btnGithub"
+                      >
                         <AiFillGoogleCircle className="" />
                         GitHub
                       </button>
