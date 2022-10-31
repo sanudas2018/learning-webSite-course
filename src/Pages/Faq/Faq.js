@@ -4,11 +4,11 @@ import "./Faq.css";
 const Faq = () => {
   return (
     <div>
-      <div className="collapseHome mt-10 mb-32">
-        <h2 className="text-3xl font-extrabold text-center text-indigo-500 mb-3">
+      <div className="collapseHome mt-10 mb-72 ">
+        <h2 className="text-3xl font-extrabold text-center mb-3">
           Don't know some common questions and answers...
         </h2>
-        <div className="totalCollapse grid grid-cols-1 lg:grid-cols-2 gap-6 w-[95%] mx-auto mt-9 bg-teal-100 p-10">
+        <div className="totalCollapse grid grid-cols-1 lg:grid-cols-2 gap-6 w-[95%] mx-auto mt-9 bg-teal-100 p-10 rounded-2xl">
           <div className="leftCol ">
             <div
               tabIndex={0}

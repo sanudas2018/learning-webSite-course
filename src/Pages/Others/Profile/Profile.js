@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../../contexts/UserContext";
 import Footer from "../../Shared/Footer/Footer";
 import Header from "../../Shared/Header/Header";
-import "./Profile.css";
+// import "./Profile.css";
 const Profile = () => {
   const { user } = useContext(AuthContext);
 
@@ -19,11 +19,13 @@ const Profile = () => {
   return (
     <div className="profileContainer">
       <Header></Header>
-      <div className=" overflow-hidden w-[70%] mx-auto">
-        <div className="title bg-blue-100 my-10 py-5 rounded-2xl">
-          <h1 className="text-3xl font-extrabold text-center ">My Profile</h1>
-        </div>
+      <div className=" overflow-hidden w-[70%] mx-auto mb-30 mt-10 ">
         <div className="proCart">
+          <div className="title  my-10 py-5 rounded-2xl">
+            <h1 className="text-3xl font-extrabold text-center profileText">
+              My Profile
+            </h1>
+          </div>
           <div className="profileImg">
             <img
               className="w-[300px] h-[300px] rounded-full mx-auto mb-3"
@@ -32,15 +34,15 @@ const Profile = () => {
             />
           </div>
           <div className="proBody ">
-            <div className="bodyTileInner bg-white text-2xl font-extrabold text-center rounded-2xl py-10">
-              <h2>{user?.displayName}</h2>
-              <p>{user?.email}</p>
+            <div className="bodyTileInner text-3xl font-bold text-center rounded-2xl py-10 profileText">
+              <h2 className="profileText">{user?.displayName}</h2>
+              <p className="profileText">{user?.email}</p>
               <div className="divider">****</div>
             </div>
 
             {/* form  */}
             <div className="card flex-shrink-0   shadow-2xl bg-base-100 mt-3">
-              <p className="py-5 text-center font-semibold text-xl">
+              <p className="py-5 text-center font-semibold text-xl text-black">
                 Update Your Profile
               </p>
               <form>

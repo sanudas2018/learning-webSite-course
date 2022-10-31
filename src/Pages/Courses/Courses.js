@@ -8,7 +8,7 @@ const Courses = () => {
   const allCourses = Courses.data;
 
   return (
-    <div className="z-0 mb-48">
+    <div className="z-0 mb-48 coursesBg ">
       <div className="courseHeader text-center mb-6">
         <h1 className="font-extrabold text-4xl">All Courses</h1>
         <p className="text-xl italic ">We found 6 products available for you</p>

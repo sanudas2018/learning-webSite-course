@@ -30,10 +30,10 @@ const CheckOut = () => {
   return (
     <div className="mb-20">
       <h1 className="text-4xl font-bold mb-3 text-center">Billing details</h1>
-      <div className="hero bg-base-200">
+      <div className="hero checOutbg rounded-2xl">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
-            <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card w-96  shadow-xl">
               <figure>
                 <img src={image} alt="Shoes" />
               </figure>

@@ -4,7 +4,10 @@ import "./Blog.css";
 const Blog = () => {
   return (
     <div>
-      <div className="bolgContainer w-[90%] mx-auto mt-10 mb-[360px] bg-cyan-100 p-[20px]">
+      <p className="text-center font-extrabold text-3xl mt-5">
+        frequently asked questions
+      </p>
+      <div className="bolgContainer rounded-2xl w-[90%] mx-auto mt-10 mb-[360px]  p-[30px]">
         {/* 1 */}
         <div
           tabIndex={0}
@@ -25,7 +28,7 @@ const Blog = () => {
         {/* 2 */}
         <div
           tabIndex={0}
-          className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box"
+          className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box my-4"
         >
           <div className="collapse-title text-xl font-medium">
             Why are you using firebase? What other options do you have to
@@ -46,7 +49,7 @@ const Blog = () => {
         {/* 3 */}
         <div
           tabIndex={0}
-          className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box"
+          className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box "
         >
           <div className="collapse-title text-xl font-medium">
             How does the private route work?
@@ -64,7 +67,7 @@ const Blog = () => {
         {/* 4 */}
         <div
           tabIndex={0}
-          className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box"
+          className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box my-4"
         >
           <div className="collapse-title text-xl font-medium">
             What is Node? How does Node work?

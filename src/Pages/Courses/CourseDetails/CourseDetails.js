@@ -24,17 +24,17 @@ const CourseDetails = () => {
   return (
     <div className="mb-44">
       <div
-        className="hero min-h-screen bg-base-200 mb- rounded-3xl"
+        className="hero min-h-screen cardBg mb- rounded-3xl"
         ref={componentRef}
       >
-        <div className="hero-content flex-col lg:flex-row h-[600px] bg-slate-200 ">
+        <div className="hero-content flex-col lg:flex-row h-[600px]  ">
           <img
             src={image}
             className="max-w-sm shadow-2xl h-[100%] rounded-3xl"
             alt=""
           />
           <div className="lg:mt-0 md:mt-4 mt-4 flex flex-col gap-4">
-            <h1 className="card-title "> {name}</h1>
+            <h1 className="card-title text-2xl font-bold"> {name}</h1>
             <p className="font-bold">{amount} Tk</p>
             <p className="">
               <span className="font-bold">Registration Deadline: </span>
@@ -56,8 +56,8 @@ const CourseDetails = () => {
           </div>
         </div>
       </div>
-      <div className="buttonContainer w-[100%] lg:w-[100%] md:w-[100%] mx-auto flex flex-row lg:justify-end justify-around md:justify-end align-middle border ">
-        <div className="inner border  w-[100%] md:w-[40%]">
+      <div className="buttonContainer w-[100%] lg:w-[100%] md:w-[100%] mx-auto flex flex-row lg:justify-end justify-around md:justify-end align-middle  ">
+        <div className="inner   w-[100%] md:w-[40%]">
           <div className="card-actions justify-end mt-4">
             <Link to={`/checkOut/${id}`}>
               <button className="btn btn-primary w-[100%]">
