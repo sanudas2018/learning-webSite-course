@@ -45,14 +45,22 @@
   --text-clg: white;
   --section-clg: #2d477ce7;
   --pro-text-clg: white;
+  --clops-text-clg: black;
+  --footer-clg: white;
 }
 .light-theme {
   --bg-color: #fff;
-  --nav-color: linear-gradient(90deg, #cbe0fc, #a0a8b8);
+  --nav-color: linear-gradient(90deg, #cbe0fc, #587dc9);
   --a-clr: #333;
   --text-clg: #092864;
   --section-clg: #bfe2f66d;
   --pro-text-clg: white;
+  --clops-text-clg: black;
+  --footer-clg: white;
+}
+/* //footer  */
+.copyright {
+  color: var(--footer-clg);
 }
 
 .navbarTop {
@@ -94,6 +102,9 @@ p {
 /* blog */
 .bolgContainer {
   background-color: var(--section-clg);
+}
+.collapse-content p {
+  color: var(--clops-text-clg);
 }
 
 /* courses pages */
