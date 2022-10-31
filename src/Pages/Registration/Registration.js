@@ -1,7 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../Shared/Header/Header";
-import { AiFillGoogleCircle } from "react-icons/ai";
+import {
+  AiFillFacebook,
+  AiFillGithub,
+  AiFillGoogleCircle,
+} from "react-icons/ai";
 import "./Registration.css";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from "../../contexts/UserContext";
@@ -231,7 +235,7 @@ const Registration = () => {
                         onClick={handleGithubLogin}
                         className="btn gap-2 cursor-pointer btnGithub"
                       >
-                        <AiFillGoogleCircle className="" />
+                        <AiFillGithub className="" />
                         GitHub
                       </button>
                     </Link>
@@ -239,7 +243,7 @@ const Registration = () => {
                   <div className="facebook">
                     <Link>
                       <button className="btn gap-2 cursor-pointer btnFacebook">
-                        <AiFillGoogleCircle className="" />
+                        <AiFillFacebook className="" />
                         Facebook
                       </button>
                     </Link>
